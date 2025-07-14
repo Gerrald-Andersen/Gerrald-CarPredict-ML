@@ -3,7 +3,7 @@ numpy
 lightgbm
 xgboost
 catboost
-scikitlearn
+scikit-learn
 streamlit
 pickle
 time
