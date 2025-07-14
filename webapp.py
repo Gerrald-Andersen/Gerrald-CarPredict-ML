@@ -35,10 +35,10 @@ st.warning("""
 st.markdown("Enter the car details and get an estimated price!")
 with open("best_regression.pkl", 'rb') as file:  
     predict = pickle.load(file) # load previous trained model
-brand = ['honda', 'mazda', 'perodua', 'mercedes-benz', 'toyota', 'subaru',
-       'proton', 'nissan', 'bmw', 'mitsubishi', 'lexus', 'volkswagen',
-       'kia', 'hyundai', 'daihatsu', 'peugeot', 'suzuki', 'renault',
-       'mini', 'naza', 'isuzu']
+brand = ['Honda', 'Mazda', 'Perodua', 'Mercedes-Benz', 'Toyota', 'Subaru',
+       'Proton', 'Nissan', 'BMW', 'Mitsubishi', 'Lexus', 'Volkswagen',
+       'Kia', 'Hyundai', 'Daihatsu', 'Peugeot', 'Suzuki', 'Renault',
+       'MINI', 'Naza', 'Isuzu']
 model = ['city e i-vtec 1.5', '3 skyactiv-g 1.5', 'cr-v tc-p vtec 1.5',
        'jazz v i-vtec 1.5', 'myvi av 1.5', 'civic tc vtec premium 1.5',
        'a250 amg line 2.0', 'sienta v 1.5', 'vios j 1.5',
@@ -190,13 +190,8 @@ if submitted:
     'Location': Location
     }])
 
-    # Jika kamu punya pipeline preprocessing, kamu bisa langsung:
-    # y_pred = pipeline.predict(X_input)
+    y_pred = predict.predict(X_input) 
 
-    # Dummy prediksi (ganti ini dengan model kamu)
-    y_pred = predict.predict(X_input)  # jika model sudah menangani preprocessing
-
-    # Inverse transform jika pakai log
     price_pred = np.expm1(y_pred[0])
 
     st.success(f"💰 Estimated Price of Used Cars: **RM {price_pred:,.2f}**")
